@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html>
+<html lang="en">
+<head>
+<title>"ValentineS"</title>
+<style>
+body {
+	background-color: powderblue;
+	font-family: "Times New Roman", serif;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	height: 90vh;
+	margin: 0;
+	}
+	.container{
+	text-align: center;
+            display: flex;
+            flex-direction: column;  
+            align-items: center;
+}
+h1{
+color:pink;
+text-align: center;
+font-size: 40px;
+}
+#buttons-container{
+display: flex;
+gap: 15px;
+}
+button{
+
+background-color:aqua;
+border: none;
+padding:10px 20px;
+font-size: 18px;
+margin:10px;
+border-radius: 10px;
+}
+#image-container{
+margin-top: 10px
+border: none;
+}
+#message{
+font-size: 20px;
+margin-top: 10px;
+}
+</style>
+</head>
+<body>
+<div class="container">
+<img src= "img/bear.gif" alt"bear image" style="width: 60px;">
+<h1><b>WILL YOU BE MY VALENTINE'S DATE?</b></h1><br>
+
+ <div id="buttons-container">
+ 
+ <button id="yes-btn" onclick="yesClicked()">Yes</button>
+  <button id="no-btn" onclick="noClicked()">No</button>
+  </div>
+  
+  <div id="image-container">
+<img id="current-image" src="" alt="Sad image" style="display: none; max-width: 300px;">
+
+</div>
+<p id="message"></p>
+</div>
+<script>
+let noCount = 0;
+const sadImages = ["img/cat.jpg", "img/dog.jpg", "img/crying.gif", "img/cute.gif"];
+
+ const sadMessages = [
+            "Why do you hurt me? 😢",
+            "Please just say yes 😭",
+            "Please, pookie 🥺",
+            "Baby 🥺🥺🥺"
+        ];
+function noClicked() {
+noCount++
+if(noCount >=5) {
+		document.getElementById("yes-btn").innerText = "Yes";
+        document.getElementById("no-btn").innerText = "Yes";
+        document.getElementById("no-btn").setAttribute("onclick", "yesClicked()");
+        document.getElementById("message").innerText = "No more No's 😢, just say Yes!";
+		
+       
+
+		}
+		else{
+		let imageElement = document.getElementById("current-image");
+		imageElement.src = sadImages[noCount - 1]; 
+		imageElement.style.display = "block"; 
+		
+		let newSize= 400+ noCount * 50;
+		 imageElement.style.width = newSize + "px";
+        imageElement.style.height = "auto";
+		
+		document.getElementById("message").innerText = sadMessages[noCount - 1];
+				}
+				}
+
+	function yesClicked() {
+            document.body.innerHTML = `	
+			<div class="container">
+	<h1 style="color:red;"> YAYYYY! 🌹💖</h1>
+	<br><br>
+	<img src="img/heart.gif" alt="Heart" width="300">
+	<br><br>
+	<p style="font-size: 24px; color:green;"> See you on our Valentine's Date!💘</p>
+	</div>
+`;
+}
+</script>
+</body>
+</html>
+
+
+
