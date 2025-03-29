@@ -1,0 +1,441 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happy Anniversary</title>
+   <style>
+        /* Dark Theme with Twinkling Stars */
+        body {
+            background: radial-gradient(circle at center, #0a0a0a, #000);
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            position: relative;
+            perspective: 1000px;
+            padding-top: 50px;
+        }
+
+        /* Star Effect */
+        .stars {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background: url('https://www.transparenttextures.com/patterns/stardust.png');
+            animation: twinkle 2s infinite alternate;
+            z-index: 0;
+        }
+
+        @keyframes twinkle {
+            0% { opacity: 0.5; }
+            100% { opacity: 1; }
+        }
+
+        /* Anniversary Heading */
+        h1 {
+            font-size: 3rem;
+            color: #4da6ff; 
+            text-shadow: 0 0 10px rgba(255, 255, 255, 0.8);
+            margin-bottom: 30px;
+            position: relative;
+            z-index: 100;
+            text-align: center;
+            
+          
+        }
+
+        @keyframes slideUpFadeIn {
+            0% {
+                opacity: 0;
+                transform: translateY(40px) scale(0.95);
+            }
+            50% {
+                opacity: 0.5;
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+                text-shadow: 0 0 10px rgba(255, 255, 255, 0.8), 
+                             0 0 20px rgba(77, 166, 255, 0.5); /* Blue glow */
+            }
+        }
+
+       /* Button Container */
+        .button-container {
+            margin-top: 30px;
+            z-index: 100;
+            position: relative;
+        }
+
+        /* Replace your existing button styles with this */
+.envelope-button {
+  position: relative;
+  padding: 15px 40px;
+  font-size: 1.5rem;
+  background: linear-gradient(to bottom, #ff4d4d, #cc0000);
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+  text-shadow: 0 1px 2px rgba(0,0,0,0.3);
+  overflow: hidden;
+  z-index: 1;
+  transform-style: preserve-3d;
+}
+
+.envelope-button:before {
+  content: "";
+  position: absolute;
+  top: -10px;
+  left: -10px;
+  right: -10px;
+  bottom: -10px;
+  background: linear-gradient(45deg, #ff9999, #ff4d4d, #cc0000);
+  z-index: -1;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  border-radius: 12px;
+}
+
+.envelope-button:hover {
+  transform: translateY(-3px) scale(1.05);
+  box-shadow: 0 6px 12px rgba(0,0,0,0.3);
+}
+
+.envelope-button:hover:before {
+  opacity: 0.6;
+}
+
+.envelope-button:active {
+  transform: translateY(1px);
+}
+
+.heart-ornament {
+  position: absolute;
+  top: -15px;
+  right: -10px;
+  font-size: 1.8rem;
+  animation: float 2s ease-in-out infinite;
+  filter: drop-shadow(0 2px 4px rgba(0,0,0,0.3));
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0) rotate(-10deg); }
+  50% { transform: translateY(-10px) rotate(10deg); }
+}
+
+/* For the letter page's back button */
+.button-container button {
+  background: linear-gradient(to bottom, #ff4d4d, #cc0000);
+  /* Keep all other button styles the same */
+}
+        button:hover {
+            background-color: darkred;
+            transform: scale(1.1);
+        }
+
+        /* Music Controls */
+        .music-controls {
+    position: fixed; 
+    bottom: 50px;
+    right: 20px;
+    z-index: 1000;
+    background: rgba(0,0,0,0.7);
+    padding: 10px;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+   }
+
+        .music-controls:hover {
+            transform: scale(1.1);
+        }
+
+        .music-controls i {
+            color: white;
+            font-size: 24px;
+        }
+
+        /* Flower Container */
+        .flower-bouquet {
+            position: relative;
+            width: 100%;
+            height: 300px;
+            display: flex;
+            justify-content: center;
+            align-items: flex-end;
+            gap: 30px;
+            margin-bottom: 50px;
+            z-index: 10;
+        }
+
+        /* Individual Flower */
+        .flower {
+            position: relative;
+            width: 100px;
+            height: 300px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            opacity: 0;
+            transform: translateY(50px);
+            animation: flower-appear 1.5s forwards;
+        }
+
+        .flower:nth-child(1) { animation-delay: 0.3s; }
+        .flower:nth-child(2) { animation-delay: 0.6s; }
+        .flower:nth-child(3) { animation-delay: 0.9s; }
+
+        @keyframes flower-appear {
+            0% { opacity: 0; transform: translateY(50px); }
+            100% { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Flower Top */
+        .flower-top {
+            position: relative;
+            width: 80px;
+            height: 80px;
+            margin-bottom: 10px;
+            transform-origin: bottom center;
+            animation: flower-sway 4s infinite ease-in-out;
+        }
+
+        @keyframes flower-sway {
+            0%, 100% { transform: rotate(-5deg); }
+            50% { transform: rotate(5deg); }
+        }
+
+        /* BLUE Flower Petals */
+        .petal {
+            position: absolute;
+            width: 40px;
+            height: 60px;
+            border-radius: 50%;
+            background: linear-gradient(to bottom, #4da6ff, #b3d9ff); /* Blue gradient */
+            box-shadow: inset 0 0 10px rgba(173, 216, 230, 0.5); /* Light blue inner glow */
+            transform-origin: bottom center;
+        }
+
+        .petal-1 {
+            transform: rotate(-30deg);
+            left: 0;
+            top: 0;
+            animation: petal-grow 1s 0.3s forwards;
+        }
+
+        .petal-2 {
+            transform: rotate(30deg);
+            right: 0;
+            top: 0;
+            animation: petal-grow 1s 0.4s forwards;
+        }
+
+        .petal-3 {
+            transform: rotate(-60deg);
+            left: 5px;
+            top: 10px;
+            animation: petal-grow 1s 0.5s forwards;
+        }
+
+        .petal-4 {
+            transform: rotate(60deg);
+            right: 5px;
+            top: 10px;
+            animation: petal-grow 1s 0.6s forwards;
+            background: linear-gradient(to bottom, #3385ff, #99ccff); /* Slightly darker blue */
+        }
+
+        @keyframes petal-grow {
+            0% { transform: scale(0); }
+            100% { transform: scale(1); }
+        }
+
+        /* Flower Center */
+        .flower-center {
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background: white;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 2;
+            animation: center-grow 0.5s 0.8s forwards;
+            opacity: 0;
+        }
+
+        @keyframes center-grow {
+            0% { transform: translate(-50%, -50%) scale(0); opacity: 0; }
+            100% { transform: translate(-50%, -50%) scale(1); opacity: 1; }
+        }
+
+      .stem {
+            width: 6px;
+            height: 0;
+            background: linear-gradient(to top, #14757a, #39c6d6); /* Original green gradient */
+            animation: stem-grow 1s forwards;
+        }
+
+        @keyframes stem-grow {
+            0% { height: 0; }
+            100% { height: 180px; }
+        }
+
+        /* Leaves - Keeping original green */
+        .leaf {
+            position: absolute;
+            width: 30px;
+            height: 15px;
+            background: linear-gradient(to right, #14757a, #39c6d6); /* Original green gradient */
+            border-radius: 15px 0;
+            animation: leaf-grow 0.5s 1s forwards;
+            opacity: 0;
+        }
+
+        .leaf-1 {
+            bottom: 60px;
+            left: 50%;
+            transform: rotate(-30deg);
+            transform-origin: left center;
+        }
+
+        .leaf-2 {
+            bottom: 100px;
+            right: 50%;
+            transform: rotate(30deg);
+            transform-origin: right center;
+        }
+
+        @keyframes leaf-grow {
+            0% { transform: scale(0); opacity: 0; }
+            100% { transform: scale(1); opacity: 0.8; }
+        }
+    </style>	
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <div class="stars"></div>
+    <h1>HAPPY ANNIVERSARY LOVE!</h1>
+
+    <!-- Flower Bouquet -->
+    <div class="flower-bouquet">
+        <div class="flower">
+            <div class="flower-top">
+                <div class="petal petal-1"></div>
+                <div class="petal petal-2"></div>
+                <div class="petal petal-3"></div>
+                <div class="petal petal-4"></div>
+                <div class="flower-center"></div>
+            </div>
+            <div class="stem"></div>
+            <div class="leaf leaf-1"></div>
+            <div class="leaf leaf-2"></div>
+        </div>
+        
+        <div class="flower">
+            <div class="flower-top">
+                <div class="petal petal-1"></div>
+                <div class="petal petal-2"></div>
+                <div class="petal petal-3"></div>
+                <div class="petal petal-4"></div>
+                <div class="flower-center"></div>
+            </div>
+            <div class="stem"></div>
+            <div class="leaf leaf-1"></div>
+            <div class="leaf leaf-2"></div>
+        </div>
+        
+        <div class="flower">
+            <div class="flower-top">
+                <div class="petal petal-1"></div>
+                <div class="petal petal-2"></div>
+                <div class="petal petal-3"></div>
+                <div class="petal petal-4"></div>
+                <div class="flower-center"></div>
+            </div>
+            <div class="stem"></div>
+            <div class="leaf leaf-1"></div>
+            <div class="leaf leaf-2"></div>
+        </div>
+    </div>
+
+  <!-- Replace your existing button with this -->
+<div class="button-container">
+  <button class="envelope-button" onclick="openLetter()">
+    💌 Open Letter
+    <div class="heart-ornament">❤️</div>
+  </button>
+</div>
+
+    <!-- Music Player -->
+    <div class="music-controls" onclick="toggleMusic()">
+        <i class="fas fa-music"></i>
+    </div>
+    <audio id="bgMusic" loop>
+        <source src="img/blue.mp3" type="audio/mpeg">
+       
+    </audio>
+
+    <script>
+    function openLetter() {
+        // Save music state and position before navigating
+        const music = document.getElementById('bgMusic');
+        localStorage.setItem('musicPlaying', !music.paused);
+        localStorage.setItem('musicTime', music.currentTime);
+        
+        // Navigate to letter page - MAKE SURE THIS MATCHES YOUR FILENAME
+        window.location.href = "index1.html";  // Changed from index1.html to letter.html
+    }
+
+   
+    const music = document.getElementById('bgMusic');
+    let isPlaying = false;
+
+    // Try to autoplay (may be blocked by browser)
+    document.addEventListener('click', function() {
+        if (!isPlaying) {
+            music.play();
+            isPlaying = true;
+            document.querySelector('.music-controls i').classList.add('fa-volume-up');
+            document.querySelector('.music-controls i').classList.remove('fa-music');
+        }
+    }, { once: true });
+
+    function toggleMusic() {
+        if (isPlaying) {
+            music.pause();
+            document.querySelector('.music-controls i').classList.remove('fa-volume-up');
+            document.querySelector('.music-controls i').classList.add('fa-music');
+        } else {
+            music.play();
+            document.querySelector('.music-controls i').classList.add('fa-volume-up');
+            document.querySelector('.music-controls i').classList.remove('fa-music');
+        }
+        isPlaying = !isPlaying;
+    }
+
+    // Persist music state between pages
+    window.addEventListener('beforeunload', function() {
+        localStorage.setItem('musicPlaying', isPlaying);
+    });
+
+    // Check music state on load
+    window.addEventListener('load', function() {
+        if (localStorage.getItem('musicPlaying') === 'true') {
+            music.play();
+            isPlaying = true;
+            document.querySelector('.music-controls i').classList.add('fa-volume-up');
+            document.querySelector('.music-controls i').classList.remove('fa-music');
+        }
+    });
+</script>
+</body>
+</html>
